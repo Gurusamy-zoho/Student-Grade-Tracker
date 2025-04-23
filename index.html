@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grade Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+</head>
+<body> 
+    <nav class="navbar">
+            <div class="nav-right">
+            <h1>Student Grade Tracker</h1>
+            </div>
+            <div class="nav-left">
+            <a href="#search">Get Student</a>
+            <a href="#add">Add Student</a>
+            <a href="#update">Update Student</a>
+            <a href="#delete">Delete Student</a>
+            </div>
+            </nav>
+
+<div class="first-main-container">
+    <div class="container_1">
+        <h2>Search specific student</h2>
+        <input type="number" placeholder="Roll No" id="get-rollno-input" class="input">
+        <button id="Search-btn" onclick="getSpecificStudentData()">Search it</button>
+
+        
+    <table id="specificTable">
+        <thead>
+            <tr>
+                <th>Roll No</th>
+                <th>Student Name</th>
+                <th>Tamil</th>
+                <th>English</th>
+                <th>Maths</th>
+                <th>Science</th>
+                <th>Social</th>
+                <th>Total</th>
+                <th>Average</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+        </div>
+</div>
+
+  <div class="mainContainer">
+    <div class="container_2">
+        <h2>Add new student</h2>
+        <div class="input-container">
+           <input type="number" placeholder="Roll No" id="roll-input" class="input">
+           <input type="text" placeholder="Student Name" id="name-input" class="input">
+           <input type="number" placeholder="Tamil" id="tamil-input" class="input">
+           <input  type="number" placeholder="English" id="english-input" class="input">
+           <input type="number"  placeholder="Maths" id="maths-input" class="input">
+           <input type="number" placeholder="Science" id="science-input" class="input">
+           <input type="number" placeholder="Social" id="social-input" class="input">
+        </div>
+
+        <div class="btn-container">
+            <button id="add-btn" onclick="addStudent()">Add Student</button>
+        </div>
+
+        <table id="resultTable">
+            <thead>
+                <tr>
+                    <th>Roll No</th>
+                    <th>Student Name</th>
+                    <th>Tamil</th>
+                    <th>English</th>
+                    <th>Maths</th>
+                    <th>Science</th>
+                    <th>Social</th>
+                    <th>Total</th>
+                    <th>Average</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <div id="chart-Container">
+            <canvas id="gradeChart"></canvas>
+          </div>
+    </div>
+    </div>
+    <div class="Third-maincontainer" id="update">
+        <div class="container_3">
+            <h2>Update specific student</h2>
+        <div class="update-input-container">
+           <input type="number" placeholder="Roll No" id="update-roll-input" class="update-input">
+           <input type="text" placeholder="Student Name" id="update-name-input" class="update-input">
+           <input type="number" placeholder="Tamil" id="update-tamil-input" class="update-input">
+           <input  type="number" placeholder="English" id="update-english-input" class="update-input">
+           <input type="number"  placeholder="Maths" id="update-maths-input" class="update-input">
+           <input type="number" placeholder="Science" id="update-science-input" class="update-input">
+           <input type="number" placeholder="Social" id="update-social-input" class="update-input">
+        </div> 
+        <div class="btn-container">
+            <button id="update-btn" onclick="updateStudent()">Update Student</button>
+        </div>
+    </div>
+    </div>
+
+    
+<div class="fourth-main-container" id="delete">
+    <div class="container_4">
+        <h2>Remove specific student</h2>
+        <input type="number" placeholder="Roll No" id="remove-roll-input" class="del-input">
+        <button id="remove-btn" onclick="removeSpecificStudentData()">Remove Student</button>
+
+        </div>
+</div>
+
+</body>
+<script src="script.js"></script>
+</html>
+
