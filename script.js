@@ -70,7 +70,8 @@ function addStudent() {
   students.push(student);
   studentRollNo.push(rollno);
 
-  alert("User added successfully! ")
+  // alert("User added successfully! ")
+  showBox("User added successfully")
 
   updateUI();
   clearForm();
@@ -229,4 +230,12 @@ function getSpecificStudentData(){
 },500);
   }
 
-  
+  function showBox(msg) {
+    document.getElementById("alert-msg").innerText=msg
+    document.getElementById("topBox").classList.add("show");
+    return;
+  }
+
+  function hideBox() {
+    document.getElementById("topBox").classList.remove("show");
+  }

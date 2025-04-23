@@ -210,6 +210,8 @@ tr:hover {
    */
    
 
+
+   /* Avoid unnecessary code and commpress code */
    * {
     box-sizing: border-box;
   }
@@ -220,7 +222,6 @@ tr:hover {
     font-family: 'Segoe UI', sans-serif;
   }
   
-  /* Navbar */
   .navbar {
     display: flex;
     justify-content: space-between;
@@ -229,6 +230,9 @@ tr:hover {
     background-color: #1e1e2f;
     color: white;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    width: 100%;
+    position: fixed;
+    z-index: 50;
   }
   
   .nav-right h1 {
@@ -249,14 +253,16 @@ tr:hover {
     padding: 8px 14px;
     border-radius: 6px;
     background-color: #333;
-    transition: background 0.3s ease;
   }
+
+
   
   .nav-left a:hover {
-    background-color: #4c4cff;
+    border:1px solid #4c4cff;
+    color: #007bff;
+    
   }
   
-  /* Containers */
   .first-main-container,
   .mainContainer,
   .Third-maincontainer,
@@ -279,9 +285,11 @@ tr:hover {
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     margin-bottom: 20px;
-  }
   
-  /* Input styling */
+  }
+  .container_1{
+    margin-top: 80px;
+  }
   .input-container,
   .update-input-container {
     display: flex;
@@ -309,8 +317,7 @@ tr:hover {
     border-color: #007bff;
     outline: none;
   }
-  
-  /* Specific input widths */
+
   #tamil-input, #english-input, #maths-input,
   #update-tamil-input, #update-english-input, #update-maths-input {
     width: 30%;
@@ -321,7 +328,6 @@ tr:hover {
     width: 45%;
   }
   
-  /* Buttons */
   .btn-container {
     text-align: center;
   }
@@ -332,7 +338,7 @@ tr:hover {
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    /* transition: all 0.1s ease; */
   }
   
   #add-btn, #update-btn, #Search-btn, #remove-btn {
@@ -344,10 +350,11 @@ tr:hover {
   #update-btn:hover,
   #Search-btn:hover,
   #remove-btn:hover {
-    background-color: #0056d2;
+   background-color:#fafafa ;
+   border: 2px solid #007bff;
+   color: #007bff;
   }
   
-  /* Table styles */
   table {
     width: 100%;
     border-collapse: collapse;
@@ -372,7 +379,6 @@ tr:hover {
     background-color: #e6f0ff;
   }
   
-  /* Chart container */
   #chart-Container {
     margin-top: 40px;
   }
@@ -381,3 +387,30 @@ tr:hover {
     max-width: 100%;
   }
   
+
+  #topBox {
+    position: fixed;
+    top: -200px;
+    left: 45%;
+    margin-left: -150px;
+    width: 500px;
+    padding: 15px;
+    background-color:rgb(255, 251, 251);
+    border: 1px solid #333;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transition: top 0.5s ease;
+  }
+
+  #topBox.show {
+    top: 20px;
+  }
+
+  #alert-btn{
+    width: 100px;
+    background-color: #007bff;
+    color: white;
+    
+  }
