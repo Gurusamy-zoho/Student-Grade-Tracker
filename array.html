@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+<body>
+    <div>
+        <input type="text" placeholder="Enter a name" id="name">
+        <button onclick="search()">Search It</button>
+    </div>
+
+    <div id="name-List">
+ 
+    </div>
+
+    <script>
+        let arr = ["John","Doe","Root","Vanda","Kelly"]
+    
+        let nameList = document.getElementById("name-List");
+        let output = "";
+
+        for(let i=0;i<arr.length;i++){
+          output+=`<h3>${arr[i]}</h3>`
+        }
+
+        nameList.innerHTML = output;
+
+
+       
+        function search(){
+            let name = document.getElementById("name").value;
+            let isConatins = false
+            for(let i=0;i<arr.length;i++){
+                if(name===arr[i]){
+                    nameList.innerHTML = `<h3>${arr[i]}</h3>`
+                    isConatins = true
+                }
+            }
+
+            if(isConatins===false){
+                nameList.innerHTML = `<h3>Match not found<h3>`
+            }
+
+        }
+    
+        
+    </script>
+</body>
+
+</html>

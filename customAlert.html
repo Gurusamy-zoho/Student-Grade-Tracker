@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smooth Slide Top Alert</title>
+  <style>
+    #topBox {
+      position: fixed;
+      top: -100px;
+      left: 50%;
+      margin-left: -150px;
+      width: 300px;
+      padding: 15px;
+      background-color: lightgreen;
+      border: 1px solid #333;
+      text-align: center;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 1000;
+      transition: top 0.5s ease;
+    }
+
+    #topBox.show {
+      top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <button onclick="showBox()">Show Alert</button>
+
+  <div id="topBox">
+    This is a smooth top alert!
+    <br><br>
+    <button onclick="hideBox()">OK</button>
+  </div>
+
+  <script>
+    function showBox() {
+      document.getElementById("topBox").classList.add("show");
+    }
+
+    function hideBox() {
+      document.getElementById("topBox").classList.remove("show");
+    }
+  </script>
+
+</body>
+</html>
