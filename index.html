@@ -32,8 +32,11 @@
 <div class="first-main-container" id="search">
     <div class="container_1">
         <h2>Search specific student</h2>
-        <input type="number" placeholder="Roll No" id="get-rollno-input" class="input">
+        <input type="number" placeholder="Roll No" id="get-rollno-input" class="input ">
         <button id="Search-btn" onclick="getSpecificStudentData()">Search it</button>
+        <br>
+        <span id="get-Error"></span>
+        
 
         
     <table id="specificTable">
@@ -60,13 +63,20 @@
     <div class="container_2">
         <h2>Add new student</h2>
         <div class="input-container">
-           <input type="number" placeholder="Roll No" id="roll-input" class="input">
+           <input type="number" placeholder="Roll No" id="roll-input" class="input" required>
+           <span id="add-roll-error"></span>
            <input type="text" placeholder="Student Name" id="name-input" class="input">
+           <span id="add-name-error"></span>
            <input type="number" placeholder="Tamil" id="tamil-input" class="input">
+           <span id="add-tamil-error"></span>
            <input  type="number" placeholder="English" id="english-input" class="input">
+           <span id="add-english-error"></span>
            <input type="number"  placeholder="Maths" id="maths-input" class="input">
+           <span id="add-maths-error"></span>
            <input type="number" placeholder="Science" id="science-input" class="input">
+           <span id="add-science-error"></span>
            <input type="number" placeholder="Social" id="social-input" class="input">
+           <span id="add-social-error"></span>
         </div>
 
         <div class="btn-container">
@@ -100,7 +110,7 @@
         <div class="container_3">
             <h2>Update specific student</h2>
         <div class="update-input-container">
-           <input type="number" placeholder="Roll No" id="update-roll-input" class="update-input">
+           <input type="number" placeholder="Roll No" id="update-roll-input" class="update-input" pattern="[1-9][0-9]{5}" maxlength="6" required>
            <input type="text" placeholder="Student Name" id="update-name-input" class="update-input">
            <input type="number" placeholder="Tamil" id="update-tamil-input" class="update-input">
            <input  type="number" placeholder="English" id="update-english-input" class="update-input">
@@ -118,8 +128,10 @@
 <div class="fourth-main-container" id="delete">
     <div class="container_4">
         <h2>Remove specific student</h2>
-        <input type="number" placeholder="Roll No" id="remove-roll-input" class="del-input">
+        <input type="number" placeholder="Roll No" id="remove-roll-input" required>
         <button id="remove-btn" onclick="removeSpecificStudentData()">Remove Student</button>
+        <br>
+        <span id="remove-Error"></span>
 
         </div>
 </div>

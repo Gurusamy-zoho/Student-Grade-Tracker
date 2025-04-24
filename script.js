@@ -3,6 +3,7 @@ const studentNames = [];
 const studentAverages = [];
 const studentRollNo = [];
 
+
 const ctx = document.getElementById('gradeChart').getContext('2d');
 const gradeChart = new Chart(ctx, {
   type: 'bar',
@@ -40,6 +41,7 @@ function getGrade(avg) {
   else return 'F';
 }
 
+
 function addStudent() {
   const rollno = document.getElementById('roll-input').value.trim();
   const name = document.getElementById('name-input').value.trim();
@@ -49,13 +51,76 @@ function addStudent() {
   const science = parseFloat(document.getElementById('science-input').value);
   const social = parseFloat(document.getElementById('social-input').value);
 
-  if (!rollno || !name || isNaN(tamil) || isNaN(english) || isNaN(maths) || isNaN(science) || isNaN(social)) {
-    alert("Please fill all fields with valid numbers.");
+  // if (!rollno || !name || isNaN(tamil) || isNaN(english) || isNaN(maths) || isNaN(science) || isNaN(social)) {
+  //   alert("Please fill all fields with valid numbers.");
+  //   return;
+  // }
+
+  if(rollno===''){
+    setError("roll-input","add-roll-error","Enter a rollno")
     return;
   }
 
+  else{
+   setSuccess("roll-input","add-roll-error")
+  }
+
+  if(!validRollNo(rollno)){
+    setError("roll-input","add-roll-error","Please enter a valid rollno!")
+    return;
+  }
+
+  else{
+    setSuccess("roll-input","add-roll-error")
+  }
+
+  if(name===''){
+    setError("name-input","add-name-error","Enter a name")
+    return;
+  }
+
+  else{
+   setSuccess("name-input","add-name-error")
+  }
+
+  if(validName(name)){
+    setError("name-input","add-name-error","Alphabetic characters only allowed")
+    return;
+  }
+
+  else{
+    setSuccess("name-input","add-name-error")
+  }
+
+
+  if(tamilInput==''){
+    setError("tamil-input","add-tamil-input","Enter a mark")
+  }
+
+  else{
+     setError("tamil-input","add-tamil-input");
+  }
+
+
+
+  const errBox  = document.getElementById("add-roll-error");
+  const rollInp = document.getElementById("roll-input");
+
+  // if (!rollno || !isValidSixDigit(rollNo)) {
+  //   errBox.textContent = "Give a 7‑digit roll‑no that doesn't start with 0";
+  //   errBox.classList.add("error-msg");
+  //   document.getElementById("get-rollno-input").style="border:1.5px solid red"
+  //   // rollInp.classList.add("error-input");
+  //   return;
+  // }
+
+  // errBox.textContent=""
+  // errBox.classList.remove("error-msg");
+  // // rollInp.classList.remove("error-input");
+  // document.getElementById("get-rollno-input").style=" border: 1.5px solid #ccc;"
+
   if (localStorage.getItem(`${rollno}`)) {
-    alert("This roll number already exists!");
+   showBox("This student rollo no already exsits.")
     return;
   }
 
@@ -70,7 +135,6 @@ function addStudent() {
   students.push(student);
   studentRollNo.push(rollno);
 
-  // alert("User added successfully! ")
   showBox("User added successfully")
 
   updateUI();
@@ -135,18 +199,61 @@ function clearForm() {
 clearForm();
 loadStudentsFromLocalStorage();
 
-
-
 function getSpecificStudentData(){
   let rollNo = document.getElementById("get-rollno-input").value;
   let specificTableBody = document.getElementById('specificTable').getElementsByTagName('tbody')[0];
     
   specificTableBody.innerHTML = '';
 
+    // if(!rollNo || !isValidSixDigit(rollNo)){
+    //   document.getElementById("get-Error").innerText = "Given six digits valid rollno, not strating with zero";
+    //   document.getElementById("get-Error").style.fontSize="14px"
+    //   document.getElementById("get-Error").style.color="red"
+    //   document.getElementById("get-rollno-input").style="border:1.5px solid red"
+    //   return;
+    // }
+
+    // const errBox  = document.getElementById("get-Error");
+    // const rollInp = document.getElementById("get-rollno-input");
+
+    // if (!rollNo || !isValidSixDigit(rollNo)) {
+    //   errBox.textContent = "Give a 7‑digit roll‑no that doesn't start with 0";
+    //   errBox.classList.add("error-msg");
+    //   document.getElementById("get-rollno-input").style="border:1.5px solid red"
+    //   // rollInp.classList.add("error-input");
+    //   return;
+    // }
+
+    // errBox.textContent=""
+    // errBox.classList.remove("error-msg");
+    // // rollInp.classList.remove("error-input");
+    // document.getElementById("get-rollno-input").style=" border: 1.5px solid #ccc;"
+
+    if(rollNo==''){
+      setError('get-rollno-input','get-Error','Enter a roll number')
+      return;
+   }
+
+   else{
+     setSuccess('get-rollno-input','get-Error')
+   }
+
+   if(!validRollNo(rollNo)){
+     setError('get-rollno-input','get-Error','Please enter valid RollNo')
+     return;
+   }
+
+   else{
+     setSuccess('get-rollno-input','get-Error')
+   }
+
+
+    let isConatins =  false
     setTimeout(()=>{for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      
+
       if (rollNo==key) {
+         document.getElementById("specificTable").style="display:block;"
         const Specificstudent = JSON.parse(localStorage.getItem(key));
         const specificRow =  specificTableBody.insertRow();
         specificRow.innerHTML = `
@@ -161,10 +268,17 @@ function getSpecificStudentData(){
           <td>${Specificstudent.avg}</td>
           <td>${Specificstudent.grade}</td>
         `;
+
+        isConatins =  true
         
       }
-    }},500) 
-    
+    }
+
+    if(isConatins==false){
+      showBox("Match not found!")
+      return
+    }
+  },100) 
     document.getElementById("get-rollno-input").value=""
   }
 
@@ -179,7 +293,7 @@ function getSpecificStudentData(){
   
     const studentData = localStorage.getItem(roll);
     if (!studentData) {
-      alert("Student with this Roll No does not exist.");
+      showBox("Student with this Roll No does not exist.")
       return;
     }
   
@@ -199,7 +313,7 @@ function getSpecificStudentData(){
   
     localStorage.setItem(roll, JSON.stringify(student));
   
-    alert("Student updated successfully!");
+    showBox("Student updated successfully!")
 
     location.reload()
   }
@@ -210,15 +324,47 @@ function getSpecificStudentData(){
     
     if (confirmDelete) {
       localStorage.removeItem(roll);
-      
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-
       location.reload();
     }
   }
   
   function removeSpecificStudentData(){
     let removeRollNo = document.getElementById("remove-roll-input").value;
+    
+    if(removeRollNo==''){
+       setError('remove-roll-input','remove-Error','Enter a roll number')
+       return;
+    }
+
+    else{
+      setSuccess('remove-roll-input','remove-Error')
+    }
+
+    if(!validRollNo(removeRollNo)){
+      setError('remove-roll-input','remove-Error','Please enter valid RollNo')
+    }
+
+    else{
+      setSuccess('remove-roll-input','remove-Error')
+    }
+
+
+    if(tamilInput==''){
+      setError('remove-roll-input','remove-Error','Enter a roll number')
+      return;
+   }
+
+   else{
+     setSuccess('remove-roll-input','remove-Error')
+   }
+
+   if(!validRollNo(removeRollNo)){
+     setError('remove-roll-input','remove-Error','Please enter valid RollNo')
+   }
+
+   else{
+     setSuccess('remove-roll-input','remove-Error')
+   }
 
     setTimeout(()=>{for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
@@ -239,3 +385,40 @@ function getSpecificStudentData(){
   function hideBox() {
     document.getElementById("topBox").classList.remove("show");
   }
+
+
+  function setError(inputId,spanId,message){
+    const inputBox = document.getElementById(`${inputId}`)
+    const spanMsg = document.getElementById(`${spanId}`)
+
+    spanMsg.innerText = message
+    inputBox.classList.add('InputError')
+    spanMsg.classList.add('error')
+    inputBox.classList.remove('InputSuccess')
+    spanMsg.classList.remove('success')
+  }
+
+  function setSuccess(inputId,spanId){
+    const inputBox = document.getElementById(`${inputId}`)
+    const spanMsg = document.getElementById(`${spanId}`)
+    
+    spanMsg.innerText = ''
+    inputBox.classList.remove('InputError')
+    spanMsg.classList.remove('error')
+    inputBox.classList.add('InputSuccess')
+    spanMsg.classList.add('success')
+  }
+
+  function validRollNo(RollNo){
+    return /^[1-9]\d{6}$/.test(RollNo);
+  }
+
+  function validName(name) {
+    return /^[A-Za-z\s]$/.test(name.trim());
+  }
+  
+  function validMark(mark) {
+    const num = Number(mark);
+    return num >= 0 && num <= 100;
+  }
+  

@@ -312,11 +312,11 @@ tr:hover {
     transition: border 0.3s ease;
   }
   
-  .input:focus,
+  /* .input:focus,
   .update-input:focus {
     border-color: #007bff;
     outline: none;
-  }
+  } */
 
   #tamil-input, #english-input, #maths-input,
   #update-tamil-input, #update-english-input, #update-maths-input {
@@ -414,3 +414,46 @@ tr:hover {
     color: white;
     
   }
+
+
+  /* .error-msg{ 
+    font-size:14px;
+     color:red; 
+    }
+  .error-input{
+    border: 1px solid red;
+  } */
+  
+
+  #specificTable{
+    display: none;
+  }
+
+  .error{
+    color: red;
+    font-size:14px;
+    margin-left: 5px;
+
+  }
+
+  input.InputError {
+    border: 1.6px solid red !important;
+  }
+
+  input.InputSuccess{
+    border: 1.5px solid #ccc;
+  }
+
+  .success{
+    
+  }
+
+  input:focus{
+  outline: none;
+  }
+
+
+
+
+
+  
